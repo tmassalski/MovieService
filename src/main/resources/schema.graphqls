@@ -1,0 +1,60 @@
+type Query {
+    movieById(id: ID): Movie
+    allMovies: [Movie]
+    actorById(id: ID): Actor
+}
+
+type Mutation {
+    createMovie(
+    title: String,
+    year: Int,
+    genre: [GenreInput],
+    director: [DirectorInput],
+    actors: [ActorInput],
+    Plot: String
+    ): Movie
+}
+
+type Movie {
+    id: ID
+    title: String
+    year: Int
+    genre:[Genre]
+    director: [Director]
+    actors: [Actor]
+    Plot: String
+}
+
+type Genre {
+    id: ID
+    genre: String
+}
+
+type Director {
+    id: ID
+    firstName: String
+    lastName: String
+}
+
+type Actor {
+    id: ID
+    firstName: String
+    lastName: String
+}
+
+input GenreInput {
+    id: ID
+    genre: String
+}
+
+input DirectorInput {
+    id: ID
+    firstName: String
+    lastName: String
+}
+
+input ActorInput {
+    id: ID
+    firstName: String
+    lastName: String
+}

@@ -11,8 +11,9 @@ public class MovieCreator {
     private final MovieCreatorClient movieCreatorClient;
 
     @Transactional
-    public void create(MovieCreatorCommand movieCreatorCommand) {
+    public Movie create(MovieCreatorCommand movieCreatorCommand) {
         Movie movie = Movie.generate(movieCreatorCommand);
         movieCreatorClient.create(movie);
+        return movie;
     }
 }

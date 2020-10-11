@@ -7,7 +7,7 @@ import pl.tmassalski.MovieService.domain.actor.ActorCreatorClient;
 
 @Service
 @RequiredArgsConstructor
-public class ActorPostgresCreatorClient implements ActorCreatorClient {
+public class ActorCreatorPostgresClient implements ActorCreatorClient {
 
     private final ActorRepository actorRepository;
 

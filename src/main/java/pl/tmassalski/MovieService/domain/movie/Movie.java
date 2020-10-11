@@ -1,9 +1,6 @@
 package pl.tmassalski.MovieService.domain.movie;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import pl.tmassalski.MovieService.domain.Auditable;
 import pl.tmassalski.MovieService.domain.actor.Actor;
 import pl.tmassalski.MovieService.domain.director.Director;
@@ -56,12 +53,26 @@ public class Movie extends Auditable {
         Movie movie = new Movie();
         movie.setTitle(movieCreatorCommand.getTitle());
         movie.setYear(Year.of(movieCreatorCommand.getYear()));
-
         movieCreatorCommand.getGenre().forEach(genre -> movie.getGenre().add(genre));
         movieCreatorCommand.getActors().forEach(actor -> movie.getActors().add(actor));
         movieCreatorCommand.getDirector().forEach(director -> movie.getDirector().add(director));
-
         movie.setPlot(movieCreatorCommand.getPlot());
         return movie;
+    }
+
+    public MovieResponse generateResponse() {
+        return mapToDto(this);
+    }
+
+    private static MovieResponse mapToDto(Movie movie) {
+        return MovieResponse.builder()
+                .id(movie.getId())
+                .title(movie.getTitle())
+                .year(movie.getYear().getValue())
+                .genre(new HashSet<>(movie.getGenre()))
+                .director(new HashSet<>(movie.getDirector()))
+                .actors(new HashSet<>(movie.getActors()))
+                .plot(movie.getPlot())
+                .build();
     }
 }
