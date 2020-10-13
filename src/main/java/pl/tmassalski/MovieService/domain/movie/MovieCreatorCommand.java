@@ -1,20 +1,26 @@
 package pl.tmassalski.MovieService.domain.movie;
 
-import lombok.Builder;
-import lombok.Getter;
+import graphql.schema.GraphQLInputType;
+import lombok.*;
 import pl.tmassalski.MovieService.domain.actor.Actor;
 import pl.tmassalski.MovieService.domain.director.Director;
 
 import java.util.Set;
 
-@Builder
+@RequiredArgsConstructor
 @Getter
-public class MovieCreatorCommand {
+@Setter
+public class MovieCreatorCommand implements GraphQLInputType {
 
     String title;
     int year;
-    Set<Genre> genre;
-    Set<Director> director;
-    Set<Actor> actors;
+    Set<Long> genreId;
+    Set<Long> directorId;
+    Set<Long> actorId;
     String plot;
+
+    @Override
+    public String getName() {
+        return "MovieCreatorInput";
+    }
 }

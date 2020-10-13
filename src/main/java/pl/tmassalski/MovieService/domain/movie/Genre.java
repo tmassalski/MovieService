@@ -24,4 +24,10 @@ public class Genre {
 
     @ManyToMany(mappedBy = "genre", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<Movie> movies = new HashSet<>();
+
+    static Genre generate(String genre) {
+        Genre newGenre = new Genre();
+        newGenre.setGenre(genre);
+        return newGenre;
+    }
 }

@@ -6,13 +6,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class ActorCreator {
+class ActorCreator {
 
     private final ActorCreatorClient actorCreatorClient;
 
     @Transactional
-    public void create(ActorCreatorCommand actorCreatorCommand) {
+    public Actor create(ActorCreatorCommand actorCreatorCommand) {
         Actor actor = Actor.generate(actorCreatorCommand);
         actorCreatorClient.create(actor);
+        return actor;
     }
 }
