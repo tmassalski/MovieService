@@ -1,0 +1,1 @@
+GraphQL interface available under https://ant-movies-env-production.herokuapp.com/graphiql
