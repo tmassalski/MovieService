@@ -21,7 +21,7 @@ type Mutation {
     createActor(input: createActorInput): Actor
     updateActor(input: ActorUpdateRequest): Actor
     deleteActor(id: ID!): Boolean
-    createGenre(input: createGenreInput): Genre
+    createGenre(genre: String): Genre
     deleteGenre(id: ID!): Boolean
     createDirector(input: createDirectorInput): Director
     updateDirector(input: DirectorUpdateRequest): Director
@@ -83,10 +83,6 @@ input ActorUpdateRequest {
     id: ID!,
     firstName: String!,
     lastName: String!
-}
-
-input createGenreInput {
-    genre: String!
 }
 
 input createDirectorInput {
