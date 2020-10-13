@@ -26,21 +26,21 @@ public class Movie extends Auditable {
     private Year year;
 
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinTable(
             name = "movie_genre",
             joinColumns = @JoinColumn(name = "movie_id"),
             inverseJoinColumns = @JoinColumn(name = "genre_id"))
     private Set<Genre> genre = new HashSet<>();
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinTable(
             name = "movie_director",
             joinColumns = @JoinColumn(name = "movie_id"),
             inverseJoinColumns = @JoinColumn(name = "director_id"))
     private Set<Director> director = new HashSet<>();
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinTable(
             name = "movie_actor",
             joinColumns = @JoinColumn(name = "movie_id"),
@@ -53,26 +53,7 @@ public class Movie extends Auditable {
         Movie movie = new Movie();
         movie.setTitle(movieCreatorCommand.getTitle());
         movie.setYear(Year.of(movieCreatorCommand.getYear()));
-        movieCreatorCommand.getGenre().forEach(genre -> movie.getGenre().add(genre));
-        movieCreatorCommand.getActors().forEach(actor -> movie.getActors().add(actor));
-        movieCreatorCommand.getDirector().forEach(director -> movie.getDirector().add(director));
         movie.setPlot(movieCreatorCommand.getPlot());
         return movie;
-    }
-
-    public MovieResponse generateResponse() {
-        return mapToDto(this);
-    }
-
-    private static MovieResponse mapToDto(Movie movie) {
-        return MovieResponse.builder()
-                .id(movie.getId())
-                .title(movie.getTitle())
-                .year(movie.getYear().getValue())
-                .genre(new HashSet<>(movie.getGenre()))
-                .director(new HashSet<>(movie.getDirector()))
-                .actors(new HashSet<>(movie.getActors()))
-                .plot(movie.getPlot())
-                .build();
     }
 }

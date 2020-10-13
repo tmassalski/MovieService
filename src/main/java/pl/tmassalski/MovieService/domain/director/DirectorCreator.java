@@ -11,8 +11,9 @@ public class DirectorCreator {
     private final DirectorCreatorClient directorCreatorClient;
 
     @Transactional
-    public void create(DirectorCreatorCommand directorCreatorCommand) {
+    public Director create(DirectorCreatorCommand directorCreatorCommand) {
         Director director = Director.generate(directorCreatorCommand);
         directorCreatorClient.create(director);
+        return director;
     }
 }

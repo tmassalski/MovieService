@@ -31,17 +31,4 @@ public class Actor extends Auditable {
         actor.setLastName(actorCreatorCommand.getLastName());
         return actor;
     }
-
-    public ActorResponse generateResponse() {
-        return mapToDto(this);
-    }
-
-    static ActorResponse mapToDto(Actor actor) {
-        ActorResponse actorResponse = ActorResponse.builder()
-                .id(actor.getId())
-                .firstName(actor.getFirstName())
-                .lastName(actor.getLastName())
-                .build();
-        return actorResponse;
-    }
 }

@@ -1,7 +1,6 @@
-package pl.tmassalski.MovieService.domain.actor;
+package pl.tmassalski.MovieService.domain.director;
 
 import graphql.schema.GraphQLInputType;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -9,13 +8,14 @@ import lombok.Setter;
 @RequiredArgsConstructor
 @Getter
 @Setter
-public class ActorCreatorCommand implements GraphQLInputType {
+public class DirectorUpdateRequest implements GraphQLInputType {
 
+    Long id;
     String firstName;
     String lastName;
 
     @Override
     public String getName() {
-        return "ActorCreatorCommand";
+        return "DirectorUpdateRequest";
     }
 }

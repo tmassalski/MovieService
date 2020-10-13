@@ -1,0 +1,101 @@
+schema{
+    query: Query
+    mutation: Mutation
+}
+
+type Query {
+    getMovieById(id: ID!): Movie
+    getAllMovies: [Movie]
+    getActorById(id: ID!): Actor
+    getAllActors: [Actor]
+    getDirectorById(id: ID!): Director
+    getAllDirectors: [Director]
+    getGenreById(id: ID): Genre
+    getAllGenre: [Genre]
+}
+
+type Mutation {
+    createMovie(input: addMovieInput): Movie
+    updateMovie(input: MovieUpdateInput): Movie
+    deleteMovie(id: ID): Boolean
+    createActor(input: createActorInput): Actor
+    updateActor(input: ActorUpdateRequest): Actor
+    deleteActor(id: ID!): Boolean
+    createGenre(input: createGenreInput): Genre
+    deleteGenre(id: ID!): Boolean
+    createDirector(input: createDirectorInput): Director
+    updateDirector(input: DirectorUpdateRequest): Director
+    deleteDirector(id: ID!): Boolean
+}
+
+type Movie {
+    id: ID
+    title: String
+    year: String
+    genre:[Genre]
+    director: [Director]
+    actors: [Actor]
+    plot: String
+}
+
+type Genre {
+    id: ID
+    genre: String
+}
+
+type Director {
+    id: ID
+    firstName: String
+    lastName: String
+}
+
+type Actor {
+    id: ID
+    firstName: String
+    lastName: String
+}
+
+input addMovieInput {
+    title: String!,
+    year: Int!,
+    genreId: [ID!],
+    actorId: [ID!],
+    directorId: [ID!],
+    plot: String!
+}
+
+input MovieUpdateInput{
+    id: ID!,
+    title: String!,
+    year: String!,
+    genreIds:[ID!],
+    directorIds: [ID!],
+    actorIds: [ID!],
+    plot: String!
+}
+
+input createActorInput {
+    firstName: String!,
+    lastName: String!
+}
+
+input ActorUpdateRequest {
+    id: ID!,
+    firstName: String!,
+    lastName: String!
+}
+
+input createGenreInput {
+    genre: String!
+}
+
+input createDirectorInput {
+    firstName: String!,
+    lastName: String!
+}
+
+input DirectorUpdateRequest{
+    id: ID!,
+    firstName: String!,
+    lastName: String!
+}

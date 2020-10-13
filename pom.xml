@@ -49,15 +49,11 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
         <dependency>
             <groupId>com.graphql-java</groupId>
-            <artifactId>graphql-java</artifactId>
-            <version>15.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.graphql-java</groupId>
-            <artifactId>graphql-java-spring-boot-starter-webmvc</artifactId>
-            <version>2.0</version>
+            <artifactId>graphql-spring-boot-starter</artifactId>
+            <version>5.0.2</version>
         </dependency>
         <dependency>
             <groupId>com.graphql-java</groupId>
@@ -65,9 +61,9 @@
             <version>5.0.2</version>
         </dependency>
         <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>29.0-jre</version>
+            <groupId>com.graphql-java</groupId>
+            <artifactId>graphql-java-tools</artifactId>
+            <version>5.2.4</version>
         </dependency>
     </dependencies>
 

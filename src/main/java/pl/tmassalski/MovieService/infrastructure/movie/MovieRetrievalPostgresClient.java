@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import pl.tmassalski.MovieService.domain.movie.Movie;
 import pl.tmassalski.MovieService.domain.movie.MovieRetrievalClient;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -17,7 +18,11 @@ public class MovieRetrievalPostgresClient implements MovieRetrievalClient {
     public Movie getById(long movieId) {
 
         Optional<Movie> result = movieRepository.findById(movieId);
-        Movie movie = result.orElseThrow();
-        return movie;
+        return result.orElseThrow();
+    }
+
+    @Override
+    public List<Movie> getAll() {
+        return movieRepository.findAll();
     }
 }
